@@ -1,0 +1,58 @@
+fn main() {
+    loop {
+        println!("Enter 1st number>> ");
+
+        let mut first_num = String::new();
+
+        io::stdin()
+            .read_line(&mut first_num)
+            .expect("Failed to read line");
+
+        let first_num: f32 = match first_num.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please enter a number.");
+                continue;
+            }
+        };
+
+        println!("Enter 2nd number>> ");
+
+        let mut second_num = String::new();
+
+        io::stdin()
+            .read_line(&mut second_num)
+            .expect("Failed to read line");
+
+        let second_num: f32 = match second_num.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input. Please enter a number.");
+                continue;
+            }
+        };
+
+        println!("Select add(+) ,subtract(-), multiply(*), or divide(/): ");
+
+        let mut usr_input = String::new();
+
+        io::stdin()
+            .read_line(&mut usr_input)
+            .expect("Failed to read line");
+
+        let operator = usr_input.trim();
+
+        let result = match operator {
+            "+" => first_num + second_num,
+            "-" => first_num - second_num,
+            "*" => first_num * second_num,
+            "/" => first_num / second_num,
+            _ => {
+                println!("Invalid operator. Please try again.");
+                continue;
+            }
+        };
+
+        println!("The answer is>> {}", result);
+    }
+}
